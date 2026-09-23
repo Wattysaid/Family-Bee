@@ -17,7 +17,9 @@ const GOOGLE_SCOPES = [
 const GOOGLE_ENDPOINTS = {
   userInfo: 'https://www.googleapis.com/oauth2/v3/userinfo',
   calendars: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
+  events: 'https://www.googleapis.com/calendar/v3/calendars',
   taskLists: 'https://tasks.googleapis.com/tasks/v1/users/@me/lists',
+  tasks: 'https://tasks.googleapis.com/tasks/v1/lists',
 };
 
 const demoAccount = {
@@ -105,8 +107,16 @@ class GoogleConnector {
       this.requestWithToken(account.accessToken, GOOGLE_ENDPOINTS.calendars),
       this.requestWithToken(account.accessToken, GOOGLE_ENDPOINTS.taskLists),
     ]);
+    const calendarItems = (calendars.items || []).slice(0, 8);
+    const taskListItems = (taskLists.items || []).slice(0, 8);
+    const [calendarEvents, taskItems] = await Promise.all([
+      Promise.all(calendarItems.map((calendar) => this.requestWithToken(account.accessToken, `${GOOGLE_ENDPOINTS.events}/${encodeURIComponent(calendar.id)}/events?singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(new Date().toISOString())}&maxResults=10`).catch(() => ({ items: [] })))),
+      Promise.all(taskListItems.map((list) => this.requestWithToken(account.accessToken, `${GOOGLE_ENDPOINTS.tasks}/${encodeURIComponent(list.id)}/tasks?showCompleted=false&showHidden=false&maxResults=20`).catch(() => ({ items: [] })))),
+    ]);
     account.calendarCount = calendars.items?.length || 0;
     account.taskListCount = taskLists.items?.length || 0;
+    account.events = calendarEvents.flatMap((response) => response.items || []);
+    account.tasks = taskItems.flatMap((response) => response.items || []);
     account.lastSync = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     account.calendars = calendars.items || [];
     account.taskLists = taskLists.items || [];
