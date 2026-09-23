@@ -54,14 +54,14 @@
 
           <div class="setup-strip" role="status">
             <div class="setup-icon">✦</div>
-            <div class="setup-copy"><strong>Your display is taking shape</strong><span><span id="active-count">7</span> of 9 features are active on <b>Living room Pi</b></span></div>
+            <div class="setup-copy"><strong>Your display is taking shape</strong><span><span id="active-count">7</span> of <span id="feature-total">10</span> features are active on <b>Living room Pi</b></span></div>
             <div class="progress-track" aria-label="Setup progress"><span id="progress-bar"></span></div>
             <button class="strip-link" type="button" data-action="preview">See live preview <span>→</span></button>
           </div>
 
           <div class="toolbar">
             <label class="search-box"><span>⌕</span><input id="feature-search" type="search" placeholder="Search features" aria-label="Search features" /></label>
-            <div class="filter-group" role="group" aria-label="Feature filters"><button class="filter-button selected" type="button" data-filter="all">All <span>9</span></button><button class="filter-button" type="button" data-filter="active">Active <span id="active-filter-count">7</span></button><button class="filter-button" type="button" data-filter="home">Home <span>3</span></button><button class="filter-button" type="button" data-filter="family">Family <span>4</span></button></div>
+            <div class="filter-group" role="group" aria-label="Feature filters"><button class="filter-button selected" type="button" data-filter="all">All <span id="all-filter-count">10</span></button><button class="filter-button" type="button" data-filter="active">Active <span id="active-filter-count">7</span></button><button class="filter-button" type="button" data-filter="home">Home <span>4</span></button><button class="filter-button" type="button" data-filter="family">Family <span>6</span></button></div>
             <label class="sort-select">Sort: <select id="sort-features" aria-label="Sort features"><option value="recommended">Recommended</option><option value="alphabetical">A–Z</option><option value="status">Active first</option></select><span>⌄</span></label>
           </div>
 
@@ -81,18 +81,44 @@
                   <div class="display-widget calendar-widget"><div class="widget-heading"><span class="widget-symbol">▦</span><span>Today</span><b>3 events</b></div><div class="mini-event"><span class="event-line coral"></span><span><b>School run</b><small>08:15 · Home → school</small></span></div><div class="mini-event"><span class="event-line yellow"></span><span><b>Team catch-up</b><small>10:30 · Study</small></span></div><div class="mini-event"><span class="event-line blue"></span><span><b>Dinner together</b><small>18:30 · Kitchen</small></span></div></div>
                   <div class="display-widget weather-widget"><div class="widget-heading"><span class="widget-symbol">☼</span><span>Wirral</span><b>Now</b></div><div class="weather-main"><strong>18°</strong><span>Partly cloudy<br /><small>Feels like 17°</small></span></div><div class="weather-week"><span>Tue <b>18°</b></span><span>Wed <b>16°</b></span><span>Thu <b>19°</b></span></div></div>
                   <div class="display-widget task-widget"><div class="widget-heading"><span class="widget-symbol">✓</span><span>Family tasks</span><b>4 left</b></div><div class="task-row"><span class="task-check checked">✓</span><span>Feed the dog</span><small>Sam</small></div><div class="task-row"><span class="task-check"></span><span>Put bins out</span><small>Mum</small></div><div class="task-row"><span class="task-check"></span><span>Pack swimming kit</span><small>Alex</small></div></div>
+                  <div class="display-widget shopping-widget"><div class="widget-heading"><span class="widget-symbol">⌑</span><span>Shopping list</span><b>3 items</b></div><div class="task-row"><span class="task-check"></span><span>Milk</span><small>Food</small></div><div class="task-row"><span class="task-check"></span><span>Bin bags</span><small>Home</small></div></div>
                 </div>
                 <div class="display-footer"><span>Family-Bee</span><span>Next refresh in 04:32</span></div>
               </div>
               <div class="preview-footer"><span class="orientation-icon">▣</span><span><b>Landscape · 16:9</b><small>Optimised for Raspberry Pi</small></span><button class="dots-button" type="button" aria-label="More preview options">···</button></div>
             </aside>
           </div>
+
+          <section class="integrations-section" id="integrations" aria-labelledby="connections-heading">
+            <div class="section-heading integrations-heading"><div><div class="section-kicker">CONNECTIONS</div><h2 id="connections-heading">Connect the household</h2><p>Bring multiple Google accounts together without mixing ownership or permissions.</p></div><button class="secondary-button" type="button" data-action="add-google"><span>+</span> Add Google account</button></div>
+            <div class="integration-layout">
+              <div class="accounts-card">
+                <div class="integration-card-heading"><div><h3>Google accounts</h3><p>Each account keeps its own authorisation and refresh state.</p></div><span class="secure-badge">⌁ Local session</span></div>
+                <div id="google-accounts" class="google-accounts"></div>
+                <div class="account-footnote"><span class="info-icon">i</span><span>Family-Bee requests read-only Calendar access and Tasks access only when you enable it.</span></div>
+              </div>
+              <div class="sources-card">
+                <div class="integration-card-heading"><div><h3>What appears on the wall</h3><p>Choose sources independently for each display.</p></div><button class="plain-button" type="button" data-action="refresh-google">Refresh <span>↻</span></button></div>
+                <div class="source-list">
+                  <label class="source-row"><span class="source-icon calendar-source">▦</span><span class="source-copy"><b>Google Calendar</b><small>Family · Work · School</small></span><span class="source-status">3 calendars</span><input type="checkbox" checked /></label>
+                  <label class="source-row"><span class="source-icon task-source">✓</span><span class="source-copy"><b>Google Tasks</b><small>Family tasks and reminders</small></span><span class="source-status">2 lists</span><input type="checkbox" checked /></label>
+                  <label class="source-row"><span class="source-icon shopping-source">⌑</span><span class="source-copy"><b>Shopping list</b><small>Local-first · optional Tasks mirror</small></span><span class="source-status">3 items</span><input type="checkbox" checked /></label>
+                </div>
+                <div class="shopping-note"><span>⌑</span><span><b>Shopping is local-first.</b> You can mirror it to a Google Tasks list, while keeping the wall display usable offline.</span></div>
+              </div>
+            </div>
+          </section>
         </section>
       </main>
     </div>
 
     <dialog class="preview-dialog" id="preview-dialog" aria-labelledby="preview-dialog-title"><button class="dialog-close" type="button" data-action="close-preview" aria-label="Close preview">×</button><div class="dialog-kicker">FAMILY-BEE PREVIEW</div><h2 id="preview-dialog-title">Your wall display is ready to glance at.</h2><p>This is a design preview of the active modules. The Raspberry Pi runtime will use the same local-first layout.</p><div class="dialog-screen"><div class="dialog-screen-title">Good morning, Noonan house <span>18° · Wirral</span></div><div class="dialog-screen-grid"><span>▦ Today<br /><b>School run · 08:15</b></span><span>✓ Family tasks<br /><b>4 tasks remaining</b></span><span>☼ Weather<br /><b>Partly cloudy</b></span></div></div><button class="primary-button" type="button" data-action="close-preview">Back to features <span>→</span></button></dialog>
 
+    <dialog class="preview-dialog connection-dialog" id="connection-dialog" aria-labelledby="connection-dialog-title"><button class="dialog-close" type="button" data-action="close-connection" aria-label="Close connection dialog">×</button><div class="dialog-kicker">GOOGLE CONNECTION</div><h2 id="connection-dialog-title">Add a family Google account.</h2><p>Family-Bee will ask Google for permission to read calendars and tasks. Accounts remain separate, so a work calendar can be included without sharing its credentials.</p><div class="scope-list"><span>✓ Calendar lists and events</span><span>✓ Google Tasks lists and items</span><span>✓ Account email for identification</span></div><div class="connection-dialog-actions"><button class="secondary-button" type="button" data-action="close-connection">Cancel</button><button class="primary-button" type="button" data-action="connect-google">Connect with Google <span>↗</span></button></div><p class="dialog-help" id="connection-dialog-status">Live connection requires a Google OAuth client ID in <code>config.js</code>. Preview mode is available now.</p></dialog>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="config.js"></script>
+    <script src="google.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
