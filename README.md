@@ -10,6 +10,8 @@ Family-Bee is designed to turn an old TV, monitor or tablet into a calm shared h
 - On/off feature toggles with active-count and progress feedback.
 - Search, category filters and sorting.
 - Live 16:9 display preview designed for a Raspberry Pi kiosk.
+- Google connection centre with multiple-account support, Calendar and Tasks source selection.
+- Local-first shopping list concept with optional Google Tasks mirroring.
 - Responsive administration view for laptop, tablet and mobile.
 - No build step or runtime dependency: plain HTML, CSS and JavaScript.
 
@@ -30,6 +32,12 @@ chromium-browser --kiosk --noerrdialogs --disable-infobars http://localhost:8080
 ```
 
 The same project can also be started with `npm start`.
+
+## Google integrations
+
+The connection screen is ready for Google Identity Services. Copy `config.example.js` to `config.js`, add a Web application OAuth client ID and follow [the integration guide](docs/GOOGLE-INTEGRATIONS.md). The demo account remains available when no OAuth configuration is present.
+
+Family-Bee treats shopping lists as local-first because the supported Google Workspace APIs provide Calendar and Tasks, rather than a public consumer shopping-list API. A dedicated Google Tasks list can be used as an optional mirror.
 
 ## Direction
 
