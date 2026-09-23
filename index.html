@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6b73c" />
+    <meta name="description" content="Family-Bee — an open-source family display for Raspberry Pi." />
+    <title>Family-Bee · Features</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Family-Bee home">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>Family<span class="brand-accent">-Bee</span></span>
+        </a>
+
+        <div class="sidebar-label">Workspace</div>
+        <nav class="primary-nav">
+          <a href="#overview"><span class="nav-icon">⌂</span>Overview</a>
+          <a class="active" href="#features" aria-current="page"><span class="nav-icon">✣</span>Features <span class="nav-count">7</span></a>
+          <a href="#screens"><span class="nav-icon">▦</span>Display screens</a>
+          <a href="#integrations"><span class="nav-icon">⌘</span>Connections</a>
+        </nav>
+
+        <div class="sidebar-label">Manage</div>
+        <nav class="primary-nav">
+          <a href="#family"><span class="nav-icon">♧</span>Family</a>
+          <a href="#settings"><span class="nav-icon">⚙</span>Settings</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="pi-status"><span class="status-dot"></span><span><strong>Living room Pi</strong><small>Online · 24°C</small></span></div>
+          <button class="profile-button" type="button" aria-label="Open account menu"><span class="avatar">KN</span><span><strong>Kieran</strong><small>Owner</small></span><span class="chevron">⌄</span></button>
+        </div>
+      </aside>
+
+      <main class="main-content" id="top">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>Family display</span><span class="slash">/</span><strong>Features</strong></div>
+          <div class="topbar-actions"><button class="icon-button" type="button" aria-label="Notifications">♢<span class="notification-dot"></span></button><button class="text-button" type="button">Help centre</button><button class="primary-button compact" type="button" data-action="preview">Preview screen <span>↗</span></button></div>
+        </header>
+
+        <section class="content-wrap" id="features">
+          <div class="page-intro">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-dot"></span>DISPLAY SETUP</div>
+              <h1>Make the wall work<br /><em>for your family.</em></h1>
+              <p class="intro-copy">Choose what your household needs at a glance. Turn features on or off without rebuilding your screen.</p>
+            </div>
+            <div class="intro-actions"><button class="secondary-button" type="button" data-action="reset">Reset defaults</button><button class="primary-button" type="button" data-action="save">Save changes <span>✓</span></button></div>
+          </div>
+
+          <div class="setup-strip" role="status">
+            <div class="setup-icon">✦</div>
+            <div class="setup-copy"><strong>Your display is taking shape</strong><span><span id="active-count">7</span> of 9 features are active on <b>Living room Pi</b></span></div>
+            <div class="progress-track" aria-label="Setup progress"><span id="progress-bar"></span></div>
+            <button class="strip-link" type="button" data-action="preview">See live preview <span>→</span></button>
+          </div>
+
+          <div class="toolbar">
+            <label class="search-box"><span>⌕</span><input id="feature-search" type="search" placeholder="Search features" aria-label="Search features" /></label>
+            <div class="filter-group" role="group" aria-label="Feature filters"><button class="filter-button selected" type="button" data-filter="all">All <span>9</span></button><button class="filter-button" type="button" data-filter="active">Active <span id="active-filter-count">7</span></button><button class="filter-button" type="button" data-filter="home">Home <span>3</span></button><button class="filter-button" type="button" data-filter="family">Family <span>4</span></button></div>
+            <label class="sort-select">Sort: <select id="sort-features" aria-label="Sort features"><option value="recommended">Recommended</option><option value="alphabetical">A–Z</option><option value="status">Active first</option></select><span>⌄</span></label>
+          </div>
+
+          <div class="workspace-grid">
+            <section class="feature-panel" aria-labelledby="feature-heading">
+              <div class="section-heading"><div><h2 id="feature-heading">Available features</h2><p>Everything is local-first by default. Connect services only when you choose.</p></div><button class="plain-button" type="button" data-action="all-on">Turn all on <span>+</span></button></div>
+              <div class="feature-grid" id="feature-grid"></div>
+              <div class="empty-state" id="empty-state" hidden><span>⌕</span><strong>No features found</strong><p>Try a different search or filter.</p></div>
+            </section>
+
+            <aside class="preview-panel" aria-labelledby="preview-heading">
+              <div class="preview-header"><div><div class="section-kicker">LIVE PREVIEW</div><h2 id="preview-heading">Living room Pi</h2></div><span class="live-pill"><span></span>Live</span></div>
+              <div class="display-frame" id="display-preview">
+                <div class="display-top"><span class="display-date">Tuesday, 23 September</span><span class="display-time">09:41</span></div>
+                <div class="display-greeting"><small>GOOD MORNING, NOONAN HOUSE</small><strong>Let’s make today<br /><span>count.</span></strong></div>
+                <div class="display-widgets">
+                  <div class="display-widget calendar-widget"><div class="widget-heading"><span class="widget-symbol">▦</span><span>Today</span><b>3 events</b></div><div class="mini-event"><span class="event-line coral"></span><span><b>School run</b><small>08:15 · Home → school</small></span></div><div class="mini-event"><span class="event-line yellow"></span><span><b>Team catch-up</b><small>10:30 · Study</small></span></div><div class="mini-event"><span class="event-line blue"></span><span><b>Dinner together</b><small>18:30 · Kitchen</small></span></div></div>
+                  <div class="display-widget weather-widget"><div class="widget-heading"><span class="widget-symbol">☼</span><span>Wirral</span><b>Now</b></div><div class="weather-main"><strong>18°</strong><span>Partly cloudy<br /><small>Feels like 17°</small></span></div><div class="weather-week"><span>Tue <b>18°</b></span><span>Wed <b>16°</b></span><span>Thu <b>19°</b></span></div></div>
+                  <div class="display-widget task-widget"><div class="widget-heading"><span class="widget-symbol">✓</span><span>Family tasks</span><b>4 left</b></div><div class="task-row"><span class="task-check checked">✓</span><span>Feed the dog</span><small>Sam</small></div><div class="task-row"><span class="task-check"></span><span>Put bins out</span><small>Mum</small></div><div class="task-row"><span class="task-check"></span><span>Pack swimming kit</span><small>Alex</small></div></div>
+                </div>
+                <div class="display-footer"><span>Family-Bee</span><span>Next refresh in 04:32</span></div>
+              </div>
+              <div class="preview-footer"><span class="orientation-icon">▣</span><span><b>Landscape · 16:9</b><small>Optimised for Raspberry Pi</small></span><button class="dots-button" type="button" aria-label="More preview options">···</button></div>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="preview-dialog" id="preview-dialog" aria-labelledby="preview-dialog-title"><button class="dialog-close" type="button" data-action="close-preview" aria-label="Close preview">×</button><div class="dialog-kicker">FAMILY-BEE PREVIEW</div><h2 id="preview-dialog-title">Your wall display is ready to glance at.</h2><p>This is a design preview of the active modules. The Raspberry Pi runtime will use the same local-first layout.</p><div class="dialog-screen"><div class="dialog-screen-title">Good morning, Noonan house <span>18° · Wirral</span></div><div class="dialog-screen-grid"><span>▦ Today<br /><b>School run · 08:15</b></span><span>✓ Family tasks<br /><b>4 tasks remaining</b></span><span>☼ Weather<br /><b>Partly cloudy</b></span></div></div><button class="primary-button" type="button" data-action="close-preview">Back to features <span>→</span></button></dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
