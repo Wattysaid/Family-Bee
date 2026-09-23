@@ -1,0 +1,13 @@
+{
+  "name": "family-bee",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An open-source family display for Raspberry Pi.",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "check": "node --check app.js"
+  },
+  "license": "MIT"
+}
+
