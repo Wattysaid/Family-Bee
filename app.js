@@ -96,7 +96,7 @@ function renderGoogleAccounts(accounts = googleConnector.listAccounts()) {
     <div class="google-account" data-account-id="${escapeHtml(account.id)}">
       <span class="google-avatar">${account.avatar ? `<img src="${escapeHtml(account.avatar)}" alt="" />` : accountInitials(account)}</span>
       <span class="google-account-copy"><b>${escapeHtml(account.name)}</b><small>${escapeHtml(account.email)}</small></span>
-      <span class="account-state ${account.status === 'demo' ? 'demo' : ''}">${account.status === 'demo' ? 'Preview' : 'Connected'}<small>${escapeHtml(account.lastSync || 'Not synced')}</small></span>
+      <span class="account-state ${account.status === 'demo' ? 'demo' : ''}">${account.status === 'demo' ? 'Preview' : 'Connected'}<small>${account.calendarCount} calendars · ${account.taskListCount} task lists</small></span>
       <button class="account-remove" type="button" data-remove-account="${escapeHtml(account.id)}" aria-label="Remove ${escapeHtml(account.name)}">×</button>
     </div>`).join('');
 }
@@ -142,6 +142,62 @@ document.querySelector('[data-action="refresh-google"]').addEventListener('click
   setTimeout(() => { button.innerHTML = original; }, 1400);
 });
 
+const shoppingStorageKey = 'family-bee.shopping-items.v1';
+const defaultShoppingItems = [
+  { id: 'milk', label: 'Milk', done: false },
+  { id: 'bin-bags', label: 'Bin bags', done: false },
+  { id: 'fruit', label: 'Fruit for lunches', done: true },
+];
+
+function readShoppingItems() {
+  try { return JSON.parse(localStorage.getItem(shoppingStorageKey)) || defaultShoppingItems; } catch { return defaultShoppingItems; }
+}
+
+let shoppingItems = readShoppingItems();
+const shoppingList = document.querySelector('#shopping-items');
+
+function saveShoppingItems() {
+  try { localStorage.setItem(shoppingStorageKey, JSON.stringify(shoppingItems)); } catch { /* Offline/private browser storage can be unavailable. */ }
+}
+
+function renderShoppingItems() {
+  shoppingList.innerHTML = shoppingItems.map((item) => `
+    <li class="shopping-item ${item.done ? 'done' : ''}" data-shopping-id="${escapeHtml(item.id)}">
+      <input type="checkbox" ${item.done ? 'checked' : ''} aria-label="Mark ${escapeHtml(item.label)} complete" />
+      <span>${escapeHtml(item.label)}</span>
+      <button type="button" data-remove-shopping aria-label="Remove ${escapeHtml(item.label)}">×</button>
+    </li>`).join('');
+}
+
+document.querySelector('#shopping-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const input = document.querySelector('#shopping-input');
+  const label = input.value.trim();
+  if (!label) return;
+  shoppingItems.unshift({ id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, label, done: false });
+  input.value = '';
+  saveShoppingItems();
+  renderShoppingItems();
+});
+
+shoppingList.addEventListener('change', (event) => {
+  const item = event.target.closest('[data-shopping-id]');
+  if (!item) return;
+  const shoppingItem = shoppingItems.find((entry) => entry.id === item.dataset.shoppingId);
+  shoppingItem.done = event.target.checked;
+  saveShoppingItems();
+  renderShoppingItems();
+});
+
+shoppingList.addEventListener('click', (event) => {
+  if (!event.target.closest('[data-remove-shopping]')) return;
+  const item = event.target.closest('[data-shopping-id]');
+  shoppingItems = shoppingItems.filter((entry) => entry.id !== item.dataset.shoppingId);
+  saveShoppingItems();
+  renderShoppingItems();
+});
+
 renderGoogleAccounts();
+renderShoppingItems();
 render();
 
