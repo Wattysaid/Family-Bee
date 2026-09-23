@@ -105,6 +105,11 @@
                   <label class="source-row"><span class="source-icon shopping-source">⌑</span><span class="source-copy"><b>Shopping list</b><small>Local-first · optional Tasks mirror</small></span><span class="source-status">3 items</span><input type="checkbox" checked /></label>
                 </div>
                 <div class="shopping-note"><span>⌑</span><span><b>Shopping is local-first.</b> You can mirror it to a Google Tasks list, while keeping the wall display usable offline.</span></div>
+                <div class="shopping-editor">
+                  <div class="shopping-editor-heading"><span><b>Quick shopping list</b><small>Stored on this Family-Bee installation</small></span><label class="mirror-toggle"><input id="mirror-shopping" type="checkbox" /><span>Mirror to Tasks</span></label></div>
+                  <form class="shopping-form" id="shopping-form"><input id="shopping-input" type="text" placeholder="Add an item…" aria-label="Add a shopping item" maxlength="80" /><button class="primary-button compact" type="submit">Add <span>+</span></button></form>
+                  <ul class="shopping-items" id="shopping-items"></ul>
+                </div>
               </div>
             </div>
           </section>
